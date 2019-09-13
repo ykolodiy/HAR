@@ -79,13 +79,30 @@ public class App
          
          JsonObject rootObject = harAsJson.getAsJsonObject();
          
-         String pageName = rootObject.getAsJsonObject("log").getAsJsonArray("entries").toString();
-        		 
-
+      String pageName = rootObject.getAsJsonObject("log").getAsJsonArray("entries").get(1).toString();
+         JsonObject one = (JsonObject) rootObject.getAsJsonObject("log").getAsJsonArray("entries").get(1);
+       JsonObject two = (JsonObject) one.getAsJsonObject("response");
+       JsonObject three = (JsonObject) two.getAsJsonObject("content");
+       
+      
+		String x = "{\n   \"date\": \"09-13-2019\",\n   \"milliseconds_since_epoch\": 1568403755707,\n   \"time\": \"07:42:35 PM\"\n}\n";
          
+       
+       JsonObject convertedObject = new Gson().fromJson(three.get("text").getAsString(), JsonObject.class);
+       
+       
          System.out.println(rootObject.toString());
          
          System.out.println(pageName);
+         
+         System.out.println( one.get("response").toString());
+         System.out.println(three);
+         System.out.println(three.get("text").getAsString());
+         System.out.println(x);
+         
+         System.out.println(convertedObject.isJsonObject());
+ 		
+ 		System.out.println(convertedObject.get("date"));
           
           
     }
