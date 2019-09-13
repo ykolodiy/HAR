@@ -70,5 +70,23 @@ public class App
          System.out.println(harAsString);
     
           
+                 JsonParser parser = new JsonParser();
+         
+         
+         JsonElement harAsJson = parser.parse(writer.toString());
+        
+         
+         
+         JsonObject rootObject = harAsJson.getAsJsonObject();
+         
+         String pageName = rootObject.getAsJsonObject("log").getAsJsonArray("entries").toString();
+        		 
+
+         
+         System.out.println(rootObject.toString());
+         
+         System.out.println(pageName);
+          
+          
     }
 }
